@@ -1,0 +1,22 @@
+<nz-card>
+  <form (submit)="addNote(newNote)" #newNote="ngForm">
+    <input
+      ngModel
+      placeholder="Title"
+      name="title"
+      #title="ngModel"
+      type="text">
+    <textarea
+      ngModel
+      placeholder="New Note"
+      name="note"
+      #note="ngModel"
+      autosize></textarea>
+      <div class="button-container">
+          <button
+            nz-button
+            nzType="default"
+            type="submit">Save</button>
+      </div>
+  </form>
+</nz-card>

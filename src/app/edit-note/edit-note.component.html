@@ -1,0 +1,53 @@
+<span id="toggleModel" (click)="buildEditor(content, footer)"></span>
+
+<!-- The forms template -->
+<ng-template #content>
+  <form (submit)="onEditNote(editedNote)" #editedNote="ngForm">
+    <input [(ngModel)]="note.title" [ngStyle]="addStyle()" type="text" placeholder="Note Title" name="title" #title="ngModel" id="title">
+
+    <textarea [(ngModel)]="note.content" [ngStyle]="addStyle()" placeholder="Note Content" name="content" #content="ngModel" pInputTextArea autoResize="autoResize" id="content"></textarea>
+
+    <nz-collapse [nzBordered]="false">
+      <nz-collapse-panel [nzActive]="colorActive" [nzExpandedIcon]="'none'" [nzShowArrow]="false" [ngStyle]="colorPanelStyle()" [nzDisabled]="true">
+        <div nz-row nzGutter="16">
+          <div nz-col class="gutter-row" nzSpan="4" *ngFor="let c of colorList">
+            <div class="gutter-box color">
+              <i (click)="changeColor(c.name)" nz-icon nzType="check-circle" nzTheme="fill" [ngStyle]="applyIconColor(c.name)"></i>
+            </div>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+    <nz-collapse [nzBordered]="false">
+      <nz-collapse-panel [nzActive]="fontActive" [nzExpandedIcon]="'none'" [nzShowArrow]="false" [ngStyle]="colorPanelStyle()" [nzDisabled]="true">
+        <div nz-row nzGutter="16">
+          <div nz-col class="gutter-row" nzSpan="4" *ngFor="let f of fontList">
+            <div class="gutter-box" (click)="changeFont(f.name)">
+              <span [ngStyle]="applyFont(f.name)">{{ f.name }}</span>
+            </div>
+          </div>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </form>
+</ng-template>
+
+<!-- All the buttons -->
+<ng-template #footer>
+  <button type="button" nz-button (click)="activateFont()" nzType="default">
+    Font Family
+  </button>
+
+  <button type="buton" nz-button (click)="activateColor()" nzType="default">
+    <i nz-icon nzType="font-colors" nzTheme="outline"></i>
+  </button>
+
+  <button type="submit" nz-button (click)="onEditNote()" nzType="default">Save</button>
+</ng-template>
+
+<nz-modal
+  nzWrapClassName="vertical-center-modal"
+  [(nzVisible)]="isVisible"
+  nzMask="false"
+  id="editor">
+</nz-modal>

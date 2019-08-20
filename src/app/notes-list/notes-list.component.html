@@ -1,0 +1,21 @@
+<app-edit-note [noteToEdit]="noteToEdit"></app-edit-note>
+<div class="list-container">
+  <div class="list">
+    <div class="column" *ngFor="let note of notesList">
+      <div class="card" *ngFor="let data of note">
+        <nz-card [nzActions]="[actionColor, actionDelete]" [nzHoverable]="true" [ngStyle]="addStyle(data)">
+          <span (click)="showNoteEditor(data.id)">
+            <p class="title" [ngStyle]="addStyle(data)">{{ data.title }}</p>
+            {{ data.content }}
+          </span>
+        </nz-card>
+        <ng-template #actionColor>
+          <i nz-icon (click)="showNoteEditor(data.id)" nzType="edit" nzTheme="outline"></i>
+        </ng-template>
+        <ng-template #actionDelete>
+          <i nz-icon (click)="onDelete(data.id)" nzType="delete" nzTheme="outline"></i>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: abel;
+  src: url(./assets/fonts/Abel/Abel-Regular.ttf);
+}
+@font-face {
+  font-family: arimo;
+  src: url(./assets/fonts/Arimo/Arimo-Regular.ttf);
+}
+@font-face {
+  font-family: caveat;
+  src: url(./assets/fonts/Caveat/Caveat-Regular.ttf);
+}
+@font-face {
+  font-family: cinzel;
+  src: url(./assets/fonts/Cinzel/Cinzel-Regular.ttf);
+}
+@font-face {
+  font-family: cookie;
+  src: url(./assets/fonts/Cookie/Cookie-Regular.ttf);
+}
+@font-face {
+  font-family:exo;
+  src: url(./assets/fonts/Exo/Exo-Regular.ttf);
+}
+
+.abel {
+  font-family: abel;
+}
+
+.arimo {
+  font-family: arimo;
+}
+
+.caveat {
+  font-family: caveat;
+}
+
+.cinzel {
+  font-family: cinzel;
+}
+
+.cookie {
+  font-family: cookie;
+}
+
+.exo {
+  font-family: exo;
+}
