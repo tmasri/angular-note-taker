@@ -5,6 +5,7 @@ const parser = require('body-parser');
 const app = express();
 
 const notesRouter = require('./routes/notes');
+const usersRouter = require('./routes/users');
 
 const password = 'L4bwTQ1epjlbYbtA';
 const dbName = 'angular-notes';
@@ -34,5 +35,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/notes', notesRouter);
+app.use('/api/users', usersRouter);
 
 module.exports = app;

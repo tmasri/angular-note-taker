@@ -3,6 +3,8 @@ import { Note } from './note.model';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { User } from './user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +15,13 @@ export class NotesService {
   private noteSubject = new Subject<Note[]>();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
-  getNotes() {
+  getNotes(user: User) {
     this.http.get<{ message: string, notes: any}>(
-      'http://localhost:3000/api/notes'
+      'http://localhost:3000/api/notes/' + user.email
     ).pipe(map( (noteData) => {
       return noteData.notes.map( note => {
         return {
@@ -26,7 +29,8 @@ export class NotesService {
           title: note.title,
           content: note.content,
           color: note.color,
-          fontStyle: note.fontStyle
+          fontStyle: note.fontStyle,
+          user: note.user
         };
       });
     }))
@@ -72,6 +76,16 @@ export class NotesService {
       updatedNotes[oldNoteIndex] = note;
       this.notes = updatedNotes;
       this.noteSubject.next([...this.notes]);
+    });
+  }
+
+  buildInitialNotes(user: User) {
+    this.http.post<{ built: boolean }>(
+      'http://localhost:3000/api/notes/init', user
+    ).subscribe( response => {
+      if (response) {
+        this.router.navigate(['/home']);
+      }
     });
   }
 

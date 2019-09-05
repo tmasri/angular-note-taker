@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NotesService } from '../notes.service';
 import { Note } from '../note.model';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-create-note',
@@ -10,7 +11,10 @@ import { Note } from '../note.model';
 })
 export class CreateNoteComponent implements OnInit {
 
-  constructor(public noteService: NotesService) { }
+  constructor(
+    public noteService: NotesService,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit() {
   }
@@ -25,7 +29,8 @@ export class CreateNoteComponent implements OnInit {
       title: form.value.title,
       content: form.value.note,
       color: null,
-      fontStyle: null
+      fontStyle: null,
+      email: this.loginService.getCookie('email')
     };
 
     this.noteService.addNote(note);

@@ -4,4 +4,5 @@ export interface Note {
   content: string;
   color: string;
   fontStyle: string;
+  email: string;
 }

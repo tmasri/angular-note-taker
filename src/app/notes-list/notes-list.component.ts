@@ -5,6 +5,8 @@ import { Note } from '../note.model';
 import { NotesService } from '../notes.service';
 import { Colors } from '../classes/color/colors';
 import { Fonts } from '../classes/fonts/fonts';
+import { User } from '../user.model';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-notes-list',
@@ -39,11 +41,17 @@ export class NotesListComponent implements OnInit, OnDestroy {
     );
   }
 
-  constructor(public noteService: NotesService) { }
+  constructor(
+    public noteService: NotesService,
+    private loginService: LoginService
+    ) { }
 
   ngOnInit() {
 
-    this.noteService.getNotes();
+    const user: User = {
+      id: null, email: this.loginService.getCookie('email'), password: null
+    }
+    this.noteService.getNotes(user);
 
     this.noteSubscribe = this.noteService.getNoteUpdateListener().subscribe(
       (note: Note[]) => {

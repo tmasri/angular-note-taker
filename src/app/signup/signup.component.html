@@ -1,0 +1,33 @@
+<div class="login-signup-form">
+  <form (submit)="createUser(form)" #form="ngForm">
+    <nz-alert id="error" nzType="error" nzMessage="Email already exists"></nz-alert>
+    <section>
+      <nz-form-label autofocus [ngStyle]="{ width: '100px' }">Email</nz-form-label>
+      <input ngModel autofocus id="email" name="email" #email="ngModel" type="email">
+    </section>
+    <section>
+      <nz-form-label [ngStyle]="{ width: '100px' }">Password</nz-form-label>
+      <input ngModel name="password" #password="ngModel" type="password">
+    </section>
+    <section>
+      <nz-form-label [ngStyle]="{ width: '100px' }">Re-Password</nz-form-label>
+      <input ngModel name="repassword" #repassword="ngModel" type="password">
+    </section>
+    <section>
+      <nz-form-label [ngStyle]="{ width: '100px', color: '#eee' }"></nz-form-label>
+      <button class="submit" nz-button nzType="primary">Join</button>
+    </section>
+  </form>
+  <a [routerLink]="['/join']" [ngStyle]="{ marginTop: '10px' }">Login</a>
+  <a nz-dropdown [nzDropdownMenu]="menu" [ngStyle]="{ marginTop: '10px' }" [nzPlacement]="'bottomCenter'">
+      Why your email?
+      <i nz-icon nzType="down"></i>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item>
+          Do not fear! Your email will only be used to identify you, no emails will be sent to you whatsoever, thats a promise!
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+</div>

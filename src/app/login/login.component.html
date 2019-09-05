@@ -1,0 +1,33 @@
+<div class="login-signup-form">
+  <form (submit)="login(loginForm)" #loginForm="ngForm">
+      <nz-alert id="error" nzType="error" nzMessage="Email/Password are incorrect"></nz-alert>
+    <section>
+      <nz-form-label [ngStyle]="{ width: '100px' }">Email</nz-form-label>
+      <input ngModel name="email" #email="ngModel" autofocus type="text"><br>
+      <div class="random-user">
+        <button type="button" nz-button nzGhost [ngStyle]="{ color: '#000' }">Random Email</button>
+      </div>
+    </section>
+    <section>
+      <nz-form-label [ngStyle]="{ width: '100px' }">Password</nz-form-label>
+      <input ngModel name="password" #password="ngModel" type="password">
+    </section>
+    <section>
+        <nz-form-label [ngStyle]="{ width: '100px' }"></nz-form-label>
+      <button class="submit" nz-button nzType="primary">Login</button>
+    </section>
+  </form>
+
+  <a [routerLink]="['/join']" [ngStyle]="{ marginTop: '10px' }">Join</a>
+  <a nz-dropdown [nzDropdownMenu]="menu" [ngStyle]="{ marginTop: '10px' }" [nzPlacement]="'bottomCenter'">
+      Why your email?
+      <i nz-icon nzType="down"></i>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item>
+        Do not fear! Your email will only be used to identify you, no emails will be sent to you whatsoever, thats a promise!
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

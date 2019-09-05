@@ -75,7 +75,8 @@ export class EditNoteComponent implements OnInit {
       title: this.note.title,
       content: this.note.content,
       color: this.note.color,
-      fontStyle: this.note.fontStyle
+      fontStyle: this.note.fontStyle,
+      email: this.note.email
     };
     this.noteService.editNote(updatedNote);
 
